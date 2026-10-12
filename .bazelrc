@@ -1,0 +1,3 @@
+common --verbose_failures
+common --repo_env=BAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN=1
+build --jobs=8

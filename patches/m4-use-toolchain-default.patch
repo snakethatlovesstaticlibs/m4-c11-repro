@@ -1,0 +1,15 @@
+--- a/BUILD.bazel
++++ b/BUILD.bazel
+@@ -835,12 +835,10 @@
+ M4_COPTS = select({
+     "@rules_cc//cc/compiler:clang": [
+         "-w",
+-        "-std=c11",
+         "-UDEBUG",
+     ],
+     "@rules_cc//cc/compiler:gcc": [
+         "-w",
+-        "-std=c11",
+         "-UDEBUG",
+     ],
+     "@rules_cc//cc/compiler:msvc-cl": [

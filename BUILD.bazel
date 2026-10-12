@@ -1,0 +1,4 @@
+alias(
+    name = "m4",
+    actual = "@m4//:m4",
+)

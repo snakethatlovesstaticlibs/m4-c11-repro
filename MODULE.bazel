@@ -1,0 +1,19 @@
+module(name = "m4_c11_repro")
+
+bazel_dep(name = "m4", version = "1.4.21.bcr.6")
+bazel_dep(name = "rules_cc_autoconf", version = "0.26.0")
+bazel_dep(name = "rules_cc", version = "0.2.26")
+
+bazel_dep(name = "gcc_toolchain", version = "0.13.0")
+
+gcc_toolchains = use_extension("@gcc_toolchain//toolchain:module_extensions.bzl", "gcc_toolchains")
+gcc_toolchains.toolchain(
+    name = "gcc15",
+    target_arch = "x86_64",
+    gcc_version = "15.2.0",
+    enable_fortran = False,
+    # This toolchain requires explicit C++ library linkage for the probe helpers.
+    extra_ldflags = ["-l:libstdc++.a"],
+)
+use_repo(gcc_toolchains, "gcc15")
+register_toolchains("@gcc15//:all")
